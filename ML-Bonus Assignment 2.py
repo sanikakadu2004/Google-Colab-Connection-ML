@@ -85,3 +85,7 @@ cleaned_file_path = 'cleaned_titanic.csv'  # Define the variable with the file p
 df.to_csv(cleaned_file_path, index=False)
 print(f"
 Cleaned data exported to: {cleaned_file_path}")
+
+from google.colab import files
+# Download the updated CSV file
+files.download('cleaned_titanic.csv')
