@@ -12,6 +12,7 @@ import numpy as np
 print("Checking for missing values:")
 print(df.isnull().sum())
 
+# Handling Data
 # Fill missing values in 'Age' with the mean
 df['Age'] = df['Age'].fillna(df['Age'].mean())
 # Fill missing values in 'Embarked' with the mode (most frequent value)
