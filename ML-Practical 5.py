@@ -8,24 +8,22 @@ dataset = pd.read_csv('Mall_Customers.csv')
 dataset.head()
 
 import matplotlib.pyplot as plt
-from sklearn.preprocessing import StandardScaler
+import pandas as pd
 from sklearn.cluster import KMeans
-import sklearn
-# Changing the column indices to 3 and 4 to select the last two columns.
-x = dataset.iloc[:, [3, 4]].values
+# Selecting the last two columns (Ensure dataset has at least 4 columns)
+x = dataset.iloc[:, [3, 4]].values  
 # Determine the optimal number of clusters using the Elbow method
 wcss = []
 for i in range(1, 11):
     kmeans = KMeans(n_clusters=i, init='k-means++', random_state=42)
-    # The variable 'x' was defined earlier and holds the data for clustering.
     kmeans.fit(x)
     wcss.append(kmeans.inertia_)
-    # Indented block ends here
 
 # Plotting the results
-plt.plot(range(1, 11), wcss)
+plt.plot(range(1, 11), wcss, marker='o')  # Added marker for better visualization
 plt.xlabel("Number of clusters")
 plt.ylabel("WCSS")
+plt.title("Elbow Method for K-Means")
 plt.show()
 
 # Fit the KMeans model and predict cluster labels
@@ -40,9 +38,9 @@ plt.scatter(x[y_kmeans == 4, 0], x[y_kmeans == 4, 1], s=60, c='yellow', label='C
 # Plotting the centroids
 plt.scatter(kmeans.cluster_centers_[:,0], kmeans.cluster_centers_[:,1], s = 100, c = 'black', label =
 'Centroids')
-plt.xlabel('Annual ce ($)') # Labels and Title
-plt.ylabel('Spenting Score (1-100)')
-plt.title('Elbow Method for K-Means')
+plt.xlabel('Annual Income (k$)') # Labels and Title
+plt.ylabel('Spending Score (1-100)')
+plt.title('Customer Clusters (K-Means)')
 plt.legend()
 plt.show()
 
